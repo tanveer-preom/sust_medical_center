@@ -246,7 +246,7 @@
                     <li class="dropdown text-center">
                       <a data-toggle="dropdown" class="dropdown-toggle" href="http://ims.iitds.win/dashboard#">
                         <img alt="" src="/a0.jpg" class="img-circle profile-img thumb-sm">
-                        <span class="username">{{doctor->name}}</span> <span class="caret"></span>
+                        <span class="username">{{ $doctor->name }}</span> <span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
                   
@@ -306,7 +306,7 @@
                          {{ csrf_field() }}
                         <input type="hidden" name="appointment_id" value="{{ $row->id }}">
                         <input type="hidden" name="doctor_id" value="{{ $row->doctor->id }}">
-                        <input type="hidden" name="doctor_id" value="{{ $row->student->id }}">
+                        <input type="hidden" name="student_id" value="{{ $row->student->id }}">
                         <input type ="submit" class="btn btn-primary"  data-toggle="modal" value = "Create Prescription">
 
                       </form>   

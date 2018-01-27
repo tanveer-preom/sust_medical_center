@@ -79,7 +79,10 @@ use Auth;
 			$userId = Auth::user()->id;
 			$doctor = App\Doctor::where('user_id',$userId)->first();
 			$doctorId = $doctor->id;
-			$today = Carbon::now()->format('m/d/Y');
+			$datetime = new DateTime();
+            $datetime->setTimestamp($time);
+            $datetime->setTimezone(new DateTimeZone('Asia/Dhaka'));
+            $today = $datetime->format('m/d/Y');
             $appointments =  App\Appointment::where('doctor_id',$doctorId)->where('date', $today)->get();
             
 
@@ -93,7 +96,10 @@ use Auth;
 			$userId = Auth::user()->id;
 			$doctor = App\Doctor::where('user_id',$userId)->first();
 			$doctorId = $doctor->id;
-			$today = Carbon::now()->format('m/d/Y');
+			$datetime = new DateTime();
+            $datetime->setTimestamp($time);
+            $datetime->setTimezone(new DateTimeZone('Asia/Dhaka'));
+            $today = $datetime->format('m/d/Y');
 			$todayMillis = strtotime($today);
             $appointments =  App\Appointment::where('doctor_id',$doctorId)->get();
             $upcommingAppointments = [];

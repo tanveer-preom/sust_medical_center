@@ -8,6 +8,8 @@ use App\Student;
 use App\Appointment;
 use Auth;
 use Carbon\Carbon;
+use DateTime;
+use DateTimeZone;
 class LoginController extends Controller
 {
     /**
@@ -42,7 +44,11 @@ class LoginController extends Controller
             $doctorName = $doctor->name;
             $doctorId = $doctor->id;
             $doctorProfilePicture = $doctor->profile_picture;
-            $today = Carbon::now()->format('m/d/Y');
+            $time = microtime(true);
+            $datetime = new DateTime();
+            $datetime->setTimestamp($time);
+            $datetime->setTimezone(new DateTimeZone('Asia/Dhaka'));
+            $today = $datetime->format('m/d/Y');
             $appointments =  App\Appointment::where('doctor_id',$doctorId)->where('date', $today)->get();
             
             return view('doctors/dashboard')->with('appointments',$appointments)->with('doctor',$doctor);

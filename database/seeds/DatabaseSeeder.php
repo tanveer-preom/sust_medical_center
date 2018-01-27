@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
 
          DB::table('students')->insert([
             'user_id' => 1,
-            'name' => bcrypt('Tanveer Preom'),
+            'name' => 'Tanveer Preom',
             'registration_no' => '2012331007',
             'date_of_birth' =>'04/14/1993',
             'dept_id' => 4343

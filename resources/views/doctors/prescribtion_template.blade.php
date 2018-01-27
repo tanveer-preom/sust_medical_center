@@ -40,18 +40,33 @@
     
         <div class="topleft"><IMG style="width: 100px;height:100px;vertical-align: middle" SRC="./logo.png"><b style="width: 100px;margin-left: 30px;font-size: 30px">SUST Medical Center</b>
         </div>
-        <div class="topright"><p style="font-size: 18px">Prescribed By,<br /><br /><b style="font-size: 25px">DR MD Mahbub ALam</b><br />Medicine Officer</p>
+        <div class="topright"><p style="font-size: 18px">Prescribed By,<br /><br /><b style="font-size: 25px">{{ $doctor->name }}</b><br />{{ $doctor->designation }}</p>
         </div>
         <div class="center">
         <hr>
-        <font>Patient Name : <u>Mohammad Abdud daiyan akhonzi bullet</u></font> <font style="margin-left: 10px">Age : <u>13</u></font> <font style="margin-left: 10px">Weight : <u>54kg</u></font>  <font style="margin-left: 10px">height : <u>5.8``</u></font>
+        <font>Patient Name : <u>{{ $student->name }}</u></font> <font style="margin-left: 10px">Age : <u>{{ $request->age }}</u></font>
+        @if($request->weight !='') 
+        <font style="margin-left: 10px">Weight : <u>{{ $request->weight }}kg</u></font>
+        @endif
+
+        @if($request->height != '')
+          <font style="margin-left: 10px">height : <u>{{$request->height}}``</u></font>
+        @endif  
         <br>
+        @if($request->description != '')
         <h3>Description</h3>
-        <p>Prodsdsdf hajsh sj xsahx sahxsjaxsaxsa sdf dsf ds fds f sdf ds fs dsf ds fdsfsd</p>
+        <p>{{$request->description}}</p>
+        @endif
+
+        @if($request->tests !='')
         <h3>Tests</h3>
-        <p>Hsjahsa dajsh djash djhas djhsa jdhasjhjdas</p>
+        <font>{{$request->tests}}</font>
+        @endif
+
+        @if($request->medicines !='')
         <h3>Medications</h3>
-        <p>Paracetamol</p>
+        <b>{{$request->medicines}}</b>
+        @endif
         </div>
 
 

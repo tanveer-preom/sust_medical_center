@@ -9,7 +9,7 @@
   <link rel="shortcut icon" href="http://ims.iitds.win/img/favicon_1.ico">
 
   <title>Create Prescription</title>
-
+  <script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
 
 
 
@@ -257,16 +257,16 @@
                 <section style="margin: 40px" class="">
                   <h2 >Create Prescription</h2>
                   <br>
-                  <p><b>Patient Name : </b>Tanveer Preom</p>
-                  <p><b>Age : </b>24</p>
+                  <p><b>Patient Name : </b>{{ $student->name }}</p>
+                  <p><b>Age : </b>{{ $age }}</p>
                   <form class="form-inline" role="form">           
                   <b>Weight : </b><input type="text" class="form-control input-lg" id="weight" placeholder="Optional" style="width: 200px;height: 35px">
                   <b>&nbsp&nbsp&nbsp Height : </b><input type="text" class="form-control input-lg" id="height" placeholder="Optional" style="width: 200px;height: 35px">           
                   </form>
                   <h3 style="margin-top: 40px">Description : </h3>
-                  <textarea class="form-control" rows="10" id="description"></textarea>
+                  <textarea class="form-control" rows="10" id="description" name="description"></textarea>
                   <h3 style="margin-top: 40px">Tests : </h3>
-                  <textarea class="form-control" rows="10" id="tests"></textarea>
+                  <textarea class="form-control" rows="10" id="tests" name="tests"></textarea>
                   <h3 style="margin-top: 40px">Medications : </h3>
                   <style>
 
@@ -301,6 +301,9 @@
                   </tr>
                   
                 </table>
+                <div id="abc">
+                  
+                </div>
                 <button class="btn btn-primary" onclick="onAddClicked()"  data-toggle="modal" style="margin-top: 10px;width: 200px">Add new medicine</button> <br><br><br>
                 <button  class="btn btn-primary" onclick="onSubmitClicked()" data-toggle="modal"  style="background-color: #009688;width: 300px;height: 35px;text-align: center;margin: auto;display: block;"> Create Prescription</button>
 
@@ -345,9 +348,10 @@
                       var medications = "";
                       for(var i=1;i<rowCount;i++)
                       {
-                          medications+= medicines.rows[i].cells[0].children[0].value+"\n( "+medicines.rows[i].cells[2].children[0].value+" + "+medicines.rows[i].cells[3].children[0].value+" + "+medicines.rows[i].cells[4].children[0].value+")\nDays To Take : "+medicines.rows[i].cells[1].children[0].value+"\n\n"
+                          medications+= medicines.rows[i].cells[0].children[0].value+"  -  "+medicines.rows[i].cells[1].children[0].value+" Days \n("+medicines.rows[i].cells[2].children[0].value+" + "+medicines.rows[i].cells[3].children[0].value+" + "+medicines.rows[i].cells[4].children[0].value+")\n\n";
                           
                       }
+                      alert(tests);
                       
                       var form = document.createElement("form");
                       var weightElement = document.createElement("input"); 
@@ -355,7 +359,9 @@
                       var descriptionElement = document.createElement("input");
                       var testsElement = document.createElement("input");
                       var medicationElement = document.createElement("input"); 
-                      var token = document.createElement("input"); 
+                      var token = document.createElement("input");
+                      var studentId = document.createElement("input");
+                      var age = document.createElement("input")  
 
                       form.method = "POST";
                       form.action = "/prescription/submit";   
@@ -366,6 +372,8 @@
                       testsElement.value= tests;
                       medicationElement.value= medications;
                       token.value = '{{ csrf_token() }}';
+                      studentId.value = '{{ $student->id }}';
+                      age.value = '{{ $age }}';
 
                       weightElement.name= 'weight';
                       heightElement.name= 'height';
@@ -373,17 +381,28 @@
                       testsElement.name= 'tests';
                       medicationElement.name= 'medicines';
                       token.name='_token';
-                      
+                      studentId.name = 'student_id';
+                      age.name = 'age';
+
+
+                      weightElement.type= 'hidden';
+                      heightElement.type= 'hidden';
+                      descriptionElement.type= 'hidden';
+                      testsElement.type= 'hidden';
+                      medicationElement.type= 'hidden';
+                      studentId.type= 'hidden';
 
                       form.appendChild(weightElement); 
                       form.appendChild(heightElement);  
                       form.appendChild(descriptionElement);  
                       form.appendChild(testsElement);  
-                      form.appendChild(medicationElement); 
+                      form.appendChild(medicationElement);
+                      form.appendChild(studentId);
+                      form.appendChild(age); 
                       form.appendChild(token);  
 
                       document.body.appendChild(form);
-
+                      //1document.getElementById('abc').appendChild(form);
                       form.submit();  
 
                   }
@@ -475,6 +494,7 @@ $(this).find('i').toggleClass('fa-plus fa-minus');
                 var deleteUri = $(this).attr('deleteUri');
                 $(".deleteForm").attr("action", deleteUri);
               });
+              
 
         </script>
         
