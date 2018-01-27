@@ -31,7 +31,7 @@ class LoginController extends Controller
     {
         $userId = Auth::user()->id;
         $role = Auth::user()->role;
-        if($role == 'student')
+        if(($role == 'student'))
         {
             $studentName = App\Student::where('user_id',$userId)->first()->name;
             $doctors = App\Doctor::all();
@@ -53,6 +53,10 @@ class LoginController extends Controller
             
             return view('doctors/dashboard')->with('appointments',$appointments)->with('doctor',$doctor);
             //return view('doctors/dashboard');
+        } elseif(($role == 'admin'))
+        {
+            $doctors = App\Doctor::all();
+            return view('adminDashboard')->with('doctors',$doctors)->with('success', false);
         }
         
     }
