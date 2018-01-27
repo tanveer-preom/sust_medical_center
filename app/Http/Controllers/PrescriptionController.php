@@ -13,6 +13,8 @@ class PrescriptionController extends Controller
         $doctorId = $request->doctor_id;
         $appointmentId = $request->appointment_id;
         $student = App\Student::where('id',$student_id)->first();
+        $stdAge = $student->date_of_birth;
+        
         return view('doctors/prescription')->with('appointment_id'$appointment_id)->with('student',$student);
     }
 

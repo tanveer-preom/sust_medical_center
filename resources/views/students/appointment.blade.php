@@ -28,9 +28,9 @@
 
 
   <!--Icon-fonts css-->
-  <link media="all" type="text/css" rel="stylesheet" href="/Dashboard - IMS_files/font-awesome.css">
+  <link media="all" type="text/css" rel="stylesheet" href="/css/font-awesome.css">
 
-  <link media="all" type="text/css" rel="stylesheet" href="/Dashboard - IMS_files/ionicons.min.css">
+  <link media="all" type="text/css" rel="stylesheet" href="/css/ionicons.min.css">
 
 
 
