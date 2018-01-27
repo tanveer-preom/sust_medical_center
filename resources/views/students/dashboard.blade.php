@@ -145,57 +145,8 @@
   <div class="pace-activity"></div></div>
 
   <!-- Aside Start-->
-  <aside class="left-panel" tabindex="5000" style="overflow: hidden; outline: none;">
-
-    <!-- brand -->
-    <div class="logo">
-      <!-- <i class="ion-social-buffer"></i> -->
-      <img class="img-responsive" src="./Shahjalal University of Science &amp; Technology_files/logo.png" style="height: 100px;width: 100px;display: block;margin: auto;" alt="">
-      <h4 style="text-align: center;">SUST Medical Center</h4>
-      <!-- <span class="nav-label">IMS</span> -->
-    </div>
-    <!-- / brand -->
-
-
-    <!-- Navbar Start -->
-    <nav class="navigation">
-      <ul class="list-unstyled">
-        <!-- <li><a href="http://ims.iitds.win/home"><i class="ion-grid"></i> <span class="nav-label">Go To Main Site</span></a></li> -->
-
-        <li class="active"><a href="/home"><i class="ion-location"></i> <span class="nav-label">Doctors</span></a>
-        </li>
-
-        <li><a href="/appointment"><i class="ion-grid"></i> <span class="nav-label">My Appointments</span></a>
-        </li>
-
-        <li><a href="/prescriptions"><i class="ion-grid"></i> <span class="nav-label">Prescriptions</span></a>
-        </li>
-
-
-
-                    <!-- <li class="has-submenu"><a href="#"><i class="ion-email"></i> <span class="nav-label">Mail</span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Inbox</a></li>
-                            <li><a href="#">Compose Mail</a></li>
-                            <li><a href="#">View Mail</a></li>
-                        </ul>
-                    </li>
-
-
-                    <li class="has-submenu"><a href="#"><i class="ion-location"></i> <span class="nav-label">Maps</span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="gmap.html"> Google Map</a></li>
-                            <li><a href="vector-map.html"> Vector Map</a></li>
-                        </ul>
-                      </li> -->
-
-                    </ul>
-                  </nav>
-
-
-
-                </aside>
-                <!-- Aside Ends-->
+  @include('partials.sideBar')
+<!-- Aside Ends-->
                 <style>
                 .list-unstyled-1{
                  padding-left: 20px;
@@ -206,31 +157,7 @@
 
              <!-- Header -->
              <section class="content">
-              <header class="top-head container-fluid">
-
-                <nav class=" navbar-default" role="navigation">
-
-
-                  <ul class="nav navbar-nav navbar-right top-menu top-right-menu">
-
-
-                    <!-- user login dropdown start-->
-                    <li class="dropdown text-center">
-                      <a data-toggle="dropdown" class="dropdown-toggle" href="http://ims.iitds.win/dashboard#">
-                        <img alt="" src="./Dashboard - IMS_files/avatar.png" class="img-circle profile-img thumb-sm">
-                        <span class="username">{{ $name }}</span> <span class="caret"></span>
-                      </a>
-                      <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
-                        <li><a href="/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
-                      </ul>
-                    </li>
-                    <!-- user login dropdown end -->
-                  </ul>
-                  <!-- End right navbar -->
-
-                </nav>
-
-              </header>
+              @include('partials.header')
 
 
               <!-- Header Ends -->

@@ -12,4 +12,9 @@ class Student extends Model
         return $this->hasMany('App\Appointment', 'student_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
 }
