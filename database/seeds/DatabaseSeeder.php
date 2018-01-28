@@ -19,35 +19,35 @@ class DatabaseSeeder extends Seeder
         ]);
 
          DB::table('users')->insert([
-            'email' => 'a@student.sust.edu',
+            'email' => 'doctor1@sust.edu',
             'password' => bcrypt('aaaaaa'),
             'role' => 'doctor'
         ]);
 
          DB::table('users')->insert([
-            'email' => 'b@student.sust.edu',
+            'email' => 'doctor2@sust.edu',
             'password' => bcrypt('aaaaaa'),
             'role' => 'doctor'
         ]);
 
          DB::table('users')->insert([
-            'email' => 'c@student.sust.edu',
+            'email' => 'doctor3@sust.edu',
             'password' => bcrypt('aaaaaa'),
             'role' => 'doctor'
         ]);
          DB::table('users')->insert([
-            'email' => 'd@student.sust.edu',
+            'email' => 'doctor4@sust.edu',
             'password' => bcrypt('aaaaaa'),
             'role' => 'doctor'
         ]);
          DB::table('users')->insert([
-            'email' => 'e@student.sust.edu',
+            'email' => 'doctor5@sust.edu',
             'password' => bcrypt('aaaaaa'),
             'role' => 'doctor'
         ]);
 
          DB::table('users')->insert([
-            'email' => 'f@student.sust.edu',
+            'email' => 'doctor6@sust.edu',
             'password' => bcrypt('aaaaaa'),
             'role' => 'doctor'
         ]);

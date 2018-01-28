@@ -45,6 +45,7 @@
         <div class="center">
         <hr>
         <font>Patient Name : <u>{{ $student->name }}</u></font> <font style="margin-left: 10px">Age : <u>{{ $request->age }}</u></font>
+
         @if($request->weight !='') 
         <font style="margin-left: 10px">Weight : <u>{{ $request->weight }}kg</u></font>
         @endif
@@ -55,17 +56,19 @@
         <br>
         @if($request->description != '')
         <h3>Description</h3>
-        <p>{{$request->description}}</p>
+        <font>{!! nl2br($request->description) !!}</font>
         @endif
 
-        @if($request->tests !='')
+
+        @if($request->test !='')
         <h3>Tests</h3>
-        <font>{{$request->tests}}</font>
+        <font>{!! nl2br($request->test) !!}</font>
         @endif
 
-        @if($request->medicines !='')
+        @if($request->medications !='')
         <h3>Medications</h3>
-        <b>{{$request->medicines}}</b>
+        <br />
+        <b>{!! $request->medications !!}</b>
         @endif
         </div>
 

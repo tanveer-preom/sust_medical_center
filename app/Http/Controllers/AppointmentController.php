@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Doctor;
 use App\Student;
 use App\Appointment;
-use Carbon\Carbon;
+use DateTime;
+use DateTimeZone;
 use Auth;
 
 	class AppointmentController extends Controller
@@ -76,6 +77,7 @@ use Auth;
 
 		public function appointmentDocToday()
 		{
+			$time = microtime(true);
 			$userId = Auth::user()->id;
 			$doctor = App\Doctor::where('user_id',$userId)->first();
 			$doctorId = $doctor->id;
@@ -88,11 +90,21 @@ use Auth;
 
             return view('doctors/appointment', [
 				'appointments' => $appointments
-			])->with('title',"Today's Appointment")->with('type',0)->with('appointments',$appointments)->with('doctor',$doctor);
+			])->with('title',"Today's Appointment")->with('type',0)->with('appointments',$appointments)->with('doctor',$doctor)->with('prescription_id',0)->with('contains_prescription',0);
 		}
+
+		public function decline($id)
+		{
+			App\Appointment::where('id',$id)->delete();
+			return back()->withInput();
+		}
+
+
+
 
 		public function appointmentDocUpcoming()
 		{
+			$time = microtime(true);
 			$userId = Auth::user()->id;
 			$doctor = App\Doctor::where('user_id',$userId)->first();
 			$doctorId = $doctor->id;
@@ -113,7 +125,7 @@ use Auth;
 
             return view('doctors/appointment', [
 				'appointments' => $upcommingAppointments
-			])->with('title',"Upcoming Appointment")->with('type',1)->with('appointments',$upcommingAppointments)->with('doctor',$doctor);
+			])->with('title',"Upcoming Appointment")->with('type',1)->with('appointments',$upcommingAppointments)->with('doctor',$doctor)->with('prescription_id',0)->with('contains_prescription',0);
 		}
 
 

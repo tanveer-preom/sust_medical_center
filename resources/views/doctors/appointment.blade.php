@@ -186,17 +186,17 @@
         class="active"
         @endif
 
-        ><a href="/appointment"><i class="ion-grid"></i> <span class="nav-label">Today's  Appointments</span></a>
+        ><a href="/appointment/today"><i class="ion-grid"></i> <span class="nav-label">Today's  Appointments</span></a>
         </li>
 
         <li
         @if($type == 1)
         class="active"
         @endif
-        ><a href="/prescriptions"><i class="ion-grid"></i> <span class="nav-label">Upcoming Appointments</span></a>
+        ><a href="/appointment/upcoming"><i class="ion-grid"></i> <span class="nav-label">Upcoming Appointments</span></a>
         </li>
 
-        <li ><a href="/prescriptions"><i class="ion-grid"></i> <span class="nav-label">Manage Prescriptions</span></a>
+        <li ><a href="/prescription/manage"><i class="ion-grid"></i> <span class="nav-label">Manage Prescriptions</span></a>
         </li>
 
         
@@ -241,6 +241,13 @@
 
               <div>
                 <section class="">
+                  @if($contains_prescription == 1)
+                  <div class="alert alert-success alert-dismissable">
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                       <a href="/prescription/view/{{ $prescription_id }}" style="font-size: 13px; color: #004D40">Prescription has been created !! Click here to View Prescription</a>
+                    </div>
+
+                  @endif
                   <h2 style="margin: 40px">{{$title}}</h2>
                   <style>
 
@@ -285,7 +292,7 @@
                         <input type ="submit" class="btn btn-primary"  data-toggle="modal" value = "Create Prescription">
 
                       </form>   
-                      <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirm"></i> Decline</a>
+                      <a href="/appointment/decline/{{ $row->id }}" class="btn btn-danger" data-toggle="modal" style="margin-top: 5px"></i> Decline</a>
 
                     
                     </td>

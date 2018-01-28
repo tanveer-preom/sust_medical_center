@@ -176,16 +176,16 @@
       <ul class="list-unstyled">
         <!-- <li><a href="http://ims.iitds.win/home"><i class="ion-grid"></i> <span class="nav-label">Go To Main Site</span></a></li> -->
 
-        <li><a href="/home"><i class="ion-location"></i> <span class="nav-label">Dashboard</span></a>
+        <li  class="active"><a href="/home"><i class="ion-location"></i> <span class="nav-label">Dashboard</span></a>
         </li>
 
-        <li  class="active"><a href="/appointment"><i class="ion-grid"></i> <span class="nav-label">Today's  Appointments</span></a>
+        <li><a href="/appointment/today"><i class="ion-grid"></i> <span class="nav-label">Today's  Appointments</span></a>
         </li>
 
-        <li><a href="/prescriptions"><i class="ion-grid"></i> <span class="nav-label">Upcoming Appointments</span></a>
+        <li><a href="/appointment/upcoming"><i class="ion-grid"></i> <span class="nav-label">Upcoming Appointments</span></a>
         </li>
 
-        <li><a href="/prescriptions"><i class="ion-grid"></i> <span class="nav-label">Manage Prescriptions</span></a>
+        <li><a href="/prescription/manage"><i class="ion-grid"></i> <span class="nav-label">Manage Prescriptions</span></a>
         </li>
 
         
@@ -228,45 +228,54 @@
                 <nav class=" navbar-default" role="navigation">
 
 
-                  <ul class="nav navbar-nav navbar-right top-menu top-right-menu">
+        <ul class="nav navbar-nav navbar-right top-menu top-right-menu">
 
 
-                    <!-- user login dropdown start-->
-                    <li class="dropdown text-center">
-                      <a data-toggle="dropdown" class="dropdown-toggle" href="http://ims.iitds.win/dashboard#">
-                        <img alt="" src="/a0.jpg" class="img-circle profile-img thumb-sm">
-                        <span class="username">Dr Md Mahbub Ahmed</span> <span class="caret"></span>
-                      </a>
-                      <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
-                  
-                        <li><a href="/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
-                      </ul>
-                    </li>
-                    <!-- user login dropdown end -->
-                  </ul>
-                  <!-- End right navbar -->
+            <!-- user login dropdown start-->
+           <!--  <li class="">
+                <span class="">{{ auth()->user()->email }}</span> -->
+                {{-- 
+               <!--  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <img alt="" src="./Dashboard - IMS_files/avatar.png" class="img-circle profile-img thumb-sm"> -->
+                    <!-- <span class="">{{ auth()->user()->email }}</span> <span class="caret"></span> -->
+                <!-- </a>
+                <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
+                    <li><a href="{{ route('password.change') }}"> Change Password</a></li>
+                    <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                </ul> -->
+                --}}
+            <!-- </li> -->
+            <li><a ><em >{{ auth()->user()->email }}</em></a></li>
+            <li><a class="" href="{{ route('password.change') }}"> Change Password</a></li>
+            <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out"></i> Log Out</a></li>
+            <!-- user login dropdown end -->
+        </ul>
+        <!-- End right navbar -->
 
-                </nav>
+    </nav>
 
               </header>
 
 
               <!-- Header Ends -->
 
-              <div>
+              <div class="wraper container-fluid">
                 <section style="margin: 40px" class="">
+
                   <h2 >Create Prescription</h2>
                   <br>
                   <p><b>Patient Name : </b>{{ $student->name }}</p>
                   <p><b>Age : </b>{{ $age }}</p>
-                  <form class="form-inline" role="form">           
-                  <b>Weight : </b><input type="text" class="form-control input-lg" id="weight" placeholder="Optional" style="width: 200px;height: 35px">
-                  <b>&nbsp&nbsp&nbsp Height : </b><input type="text" class="form-control input-lg" id="height" placeholder="Optional" style="width: 200px;height: 35px">           
-                  </form>
+                  <form class="form-inline" role="form"> 
+                  <b>Weight : </b><input type="number" class="form-control input-lg" id="weight" placeholder="Optional" style="width: 200px;height: 35px">
+                  <b>&nbsp&nbsp&nbsp Height : </b><input type="number" class="form-control input-lg" id="height" placeholder="Optional" style="width: 200px;height: 35px"> </form>          
                   <h3 style="margin-top: 40px">Description : </h3>
+                  <form id="form_sub" method="POST" action ="/prescription/submit">
+                    {{ csrf_field() }}
                   <textarea class="form-control" rows="10" id="description" name="description"></textarea>
                   <h3 style="margin-top: 40px">Tests : </h3>
                   <textarea class="form-control" rows="10" id="tests" name="tests"></textarea>
+                  </form>
                   <h3 style="margin-top: 40px">Medications : </h3>
                   <style>
 
@@ -338,70 +347,58 @@
 
                   function onSubmitClicked()
                   {
+                      // preventDefault();
                       var weight = document.getElementById("weight").value;
                       var height = document.getElementById("height").value;
                       //var age = document.getElementById("weight").value;
-                      var description = document.getElementById('description').value;
-                      var tests = document.getElementById('tests').value;
                       var medicines = document.getElementById("medicine_table");
                       var rowCount = medicines.getElementsByTagName("tr").length;
                       var medications = "";
                       for(var i=1;i<rowCount;i++)
                       {
-                          medications+= medicines.rows[i].cells[0].children[0].value+"  -  "+medicines.rows[i].cells[1].children[0].value+" Days \n("+medicines.rows[i].cells[2].children[0].value+" + "+medicines.rows[i].cells[3].children[0].value+" + "+medicines.rows[i].cells[4].children[0].value+")\n\n";
+                          medications+= medicines.rows[i].cells[0].children[0].value+"  -  "+medicines.rows[i].cells[1].children[0].value+" Days #("+medicines.rows[i].cells[2].children[0].value+" + "+medicines.rows[i].cells[3].children[0].value+" + "+medicines.rows[i].cells[4].children[0].value+")##";
                           
                       }
-                      alert(tests);
                       
-                      var form = document.createElement("form");
+                      
+                      var form = document.getElementById("form_sub");
                       var weightElement = document.createElement("input"); 
                       var heightElement = document.createElement("input");
-                      var descriptionElement = document.createElement("input");
-                      var testsElement = document.createElement("input");
                       var medicationElement = document.createElement("input"); 
                       var token = document.createElement("input");
                       var studentId = document.createElement("input");
-                      var age = document.createElement("input")  
+                      var age = document.createElement("input");
+                      var appointmentId = document.createElement("input");  
 
                       form.method = "POST";
                       form.action = "/prescription/submit";   
 
                       weightElement.value= weight;
                       heightElement.value= height;
-                      descriptionElement.value= description;
-                      testsElement.value= tests;
                       medicationElement.value= medications;
                       token.value = '{{ csrf_token() }}';
                       studentId.value = '{{ $student->id }}';
                       age.value = '{{ $age }}';
+                      appointmentId.value = '{{ $appointment_id }}';
 
                       weightElement.name= 'weight';
                       heightElement.name= 'height';
-                      descriptionElement.name= 'description';
-                      testsElement.name= 'tests';
                       medicationElement.name= 'medicines';
                       token.name='_token';
                       studentId.name = 'student_id';
                       age.name = 'age';
+                      appointmentId.name = "appointment_id";
 
-
-                      weightElement.type= 'hidden';
-                      heightElement.type= 'hidden';
-                      descriptionElement.type= 'hidden';
-                      testsElement.type= 'hidden';
-                      medicationElement.type= 'hidden';
-                      studentId.type= 'hidden';
 
                       form.appendChild(weightElement); 
                       form.appendChild(heightElement);  
-                      form.appendChild(descriptionElement);  
-                      form.appendChild(testsElement);  
                       form.appendChild(medicationElement);
                       form.appendChild(studentId);
                       form.appendChild(age); 
+                      form.appendChild(appointmentId);
                       form.appendChild(token);  
 
-                      document.body.appendChild(form);
+                      //document.body.appendChild(form);
                       //1document.getElementById('abc').appendChild(form);
                       form.submit();  
 

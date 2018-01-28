@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <!-- saved from url=(0030)http://ims.iitds.win/dashboard -->
 <html lang="en" style="overflow-y: hidden;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
 
   <link rel="shortcut icon" href="http://ims.iitds.win/img/favicon_1.ico">
 
-  <title>Create Prescription</title>
+  <title>Prescriptions</title>
 
 
 
@@ -152,6 +151,8 @@
 
 
 
+
+
   </head>
   <body class="  pace-done" style=""><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
     <div class="pace-progress-inner"></div>
@@ -176,16 +177,16 @@
       <ul class="list-unstyled">
         <!-- <li><a href="http://ims.iitds.win/home"><i class="ion-grid"></i> <span class="nav-label">Go To Main Site</span></a></li> -->
 
-        <li><a href="/home"><i class="ion-location"></i> <span class="nav-label">Dashboard</span></a>
+        <li ><a href="/home"><i class="ion-location"></i> <span class="nav-label">Dashboard</span></a>
         </li>
 
-        <li  ><a href="/appointment"><i class="ion-grid"></i> <span class="nav-label">Today's  Appointments</span></a>
+        <li><a href="/appointment/today"><i class="ion-grid"></i> <span class="nav-label">Today's  Appointments</span></a>
         </li>
 
-        <li><a href="/prescriptions"><i class="ion-grid"></i> <span class="nav-label">Upcoming Appointments</span></a>
+        <li><a href="/appointment/upcoming"><i class="ion-grid"></i> <span class="nav-label">Upcoming Appointments</span></a>
         </li>
 
-        <li class="active"><a href="/prescriptions"><i class="ion-grid"></i> <span class="nav-label">Manage Prescriptions</span></a>
+        <li class="active"><a href="/prescription/manage"><i class="ion-grid"></i> <span class="nav-label">Manage Prescriptions</span></a>
         </li>
 
         
@@ -225,28 +226,34 @@
              <section class="content">
               <header class="top-head container-fluid">
 
-                <nav class=" navbar-default" role="navigation">
+               <nav class=" navbar-default" role="navigation">
 
 
-                  <ul class="nav navbar-nav navbar-right top-menu top-right-menu">
+        <ul class="nav navbar-nav navbar-right top-menu top-right-menu">
 
 
-                    <!-- user login dropdown start-->
-                    <li class="dropdown text-center">
-                      <a data-toggle="dropdown" class="dropdown-toggle" href="http://ims.iitds.win/dashboard#">
-                        <img alt="" src="/a0.jpg" class="img-circle profile-img thumb-sm">
-                        <span class="username">Dr Md Mahbub Ahmed</span> <span class="caret"></span>
-                      </a>
-                      <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
-                  
-                        <li><a href="/logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
-                      </ul>
-                    </li>
-                    <!-- user login dropdown end -->
-                  </ul>
-                  <!-- End right navbar -->
+            <!-- user login dropdown start-->
+           <!--  <li class="">
+                <span class="">{{ auth()->user()->email }}</span> -->
+                {{-- 
+               <!--  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <img alt="" src="./Dashboard - IMS_files/avatar.png" class="img-circle profile-img thumb-sm"> -->
+                    <!-- <span class="">{{ auth()->user()->email }}</span> <span class="caret"></span> -->
+                <!-- </a>
+                <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
+                    <li><a href="{{ route('password.change') }}"> Change Password</a></li>
+                    <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                </ul> -->
+                --}}
+            <!-- </li> -->
+            <li><a ><em >{{ auth()->user()->email }}</em></a></li>
+            <li><a class="" href="{{ route('password.change') }}"> Change Password</a></li>
+            <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out"></i> Log Out</a></li>
+            <!-- user login dropdown end -->
+        </ul>
+        <!-- End right navbar -->
 
-                </nav>
+    </nav>
 
               </header>
 
@@ -260,11 +267,15 @@
                            
                   <b>Enter Registration Number : </b>
                   <br>
-                  <form class="form-inline" role="form">
-                  <input type="text" class="form-control input-lg" id="search-church"  style="height: 35px"><br><br>         
-                  <a href="#" class="btn btn-primary"  data-toggle="modal"> Search Prescriptions</a> <b>&nbspOR&nbsp</b>&nbsp&nbsp
-                <a href="#" class="btn btn-primary"  data-toggle="modal" style="background-color: #009688;width: 200px;height: 35px;text-align: center"> Create New Prescription</a>
+                  <form class="form-inline" role="form" action="/prescription/new" method="POST">
+                    {{ csrf_field() }}
+                  <input type="text" name="reg_no" class="form-control input-lg" id="search-church"  style="height: 35px"><br><br>         
+                <input type="submit"  class="btn btn-primary"  data-toggle="modal" value="Create New Prescription" style="background-color: #009688;width: 200px;height: 35px;text-align: center"> 
                 </form>
+
+
+                
+
 
               </section>
             </section>

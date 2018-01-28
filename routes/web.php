@@ -22,22 +22,21 @@ Route::get('/make_appointment/{id}', 'AppointmentController@appointment');
 Route::post('/appoint', 'AppointmentController@createAppointment');
 Route::get('/logout', 'AppointmentController@logout')->name('logout');
 Route::get('/appointment', 'AppointmentController@myappointments');
-Route::get('/prescriptions',function(){
-	return view('students/prescriptions');
-});
+Route::get('/prescriptions','PrescriptionController@manageStdPrescription');
 
 Route::get('/appointment/today','AppointmentController@appointmentDocToday');
 Route::get('/appointment/upcoming','AppointmentController@appointmentDocUpcoming');
 Route::post('/prescription/create','PrescriptionController@createPrescription');
 Route::post('/prescription/submit','PrescriptionController@submitPrescription');
+Route::get('/appointment/decline/{id}','AppointmentController@decline');
+Route::get('/prescription/view/{id}','PrescriptionController@viewPrescription');
 
-Route::get('/prescription',function(){
-	return view('doctors/prescription');
-});
+Route::get('/prescription/manage','PrescriptionController@manageView');
+Route::post('/prescription/new','PrescriptionController@manage');
 
-Route::get('/prescription/manage',function(){
-	return view('doctors/manage_prescription');
-});
+
+
+
 Route::delete('/appointment/{id}', 'AppointmentController@destroy')->name('appointment.delete');
 
 
